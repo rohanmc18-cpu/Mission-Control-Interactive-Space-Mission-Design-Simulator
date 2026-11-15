@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control | Space Odyssey</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="navbar">
+    <h2>NASA <span>| MISSION CONTROL</span></h2>
+    <p>SPACE ODYSSEY 2026</p>
+</header>
+
+<!-- HOME SCREEN -->
+<section class="hero" id="home">
+    <p class="tagline">HUMANITY'S NEXT FRONTIER</p>
+
+    <h1>EXPLORE THE<br><span>UNKNOWN</span></h1>
+
+    <p class="description">
+        Design your spacecraft. Choose your destination.
+        Begin your journey beyond Earth.
+    </p>
+
+    <button id="startButton">EXPLORE MISSIONS ↗</button>
+</section>
+
+<!-- MISSION SELECTION -->
+<section class="missions" id="missions">
+    <p class="tagline">MISSION SELECTION</p>
+    <h2>CHOOSE YOUR DESTINATION</h2>
+
+    <div class="planet-container">
+
+        <article class="planet-card" data-mission="Earth">
+            <div class="planet">🌍</div>
+            <h3>EARTH ORBIT</h3>
+            <p>Explore our home planet from orbit.</p>
+            <button class="selectButton">SELECT MISSION</button>
+        </article>
+
+        <article class="planet-card" data-mission="Moon">
+            <div class="planet">🌕</div>
+            <h3>LUNAR EXPLORATION</h3>
+            <p>Travel to Earth's closest celestial neighbour.</p>
+            <button class="selectButton">SELECT MISSION</button>
+        </article>
+
+        <article class="planet-card" data-mission="Mars">
+            <div class="planet">🔴</div>
+            <h3>MARS EXPEDITION</h3>
+            <p>Prepare for a journey to the Red Planet.</p>
+            <button class="selectButton">SELECT MISSION</button>
+        </article>
+
+    </div>
+
+    <button id="continueButton" disabled>
+        SELECT A MISSION FIRST
+    </button>
+
+    <p id="missionResult" class="result"></p>
+</section>
+
+<!-- SPACECRAFT DESIGN STUDIO -->
+<section id="studio" class="studio" hidden>
+
+    <p class="tagline">ENGINEERING DIVISION</p>
+    <h1>SPACECRAFT DESIGN STUDIO</h1>
+
+    <p class="description">
+        Configure your spacecraft for your selected mission.
+    </p>
+
+    <h2 id="destinationTitle">MISSION DESTINATION</h2>
+
+    <div class="design-grid">
+
+        <div class="design-panel">
+            <h2>01. PROPULSION SYSTEM</h2>
+
+            <label for="engine">Select Engine</label>
+
+            <select id="engine">
+                <option value="chemical">Chemical Engine</option>
+                <option value="ion">Ion Engine</option>
+                <option value="advanced">Advanced Engine</option>
+            </select>
+        </div>
+
+        <div class="design-panel">
+            <h2>02. FUEL SYSTEM</h2>
+
+            <label for="fuel">Fuel Capacity</label>
+
+            <input type="range" id="fuel"
+                min="100" max="1000" value="500" step="50">
+
+            <p>Fuel: <strong id="fuelValue">500</strong> kg</p>
+        </div>
+
+        <div class="design-panel">
+            <h2>03. SOLAR ENERGY</h2>
+
+            <label for="solar">Solar Panel Type</label>
+
+            <select id="solar">
+                <option value="basic">Basic Solar Panels</option>
+                <option value="advanced">Advanced Solar Panels</option>
+                <option value="high">High Efficiency Solar Panels</option>
+            </select>
+        </div>
+
+        <div class="design-panel">
+            <h2>04. BATTERY SYSTEM</h2>
+
+            <label for="battery">Battery Capacity</label>
+
+            <select id="battery">
+                <option value="100">100 kWh</option>
+                <option value="250">250 kWh</option>
+                <option value="500">500 kWh</option>
+                <option value="1000">1000 kWh</option>
+            </select>
+        </div>
+
+    </div>
+
+    <!-- SPACECRAFT STATISTICS -->
+    <div class="design-panel stats">
+        <h2>MISSION RESOURCE REPORT</h2>
+
+        <div class="stat-grid">
+            <div>
+                <h3 id="massValue">0 kg</h3>
+                <p>Total Mass</p>
+            </div>
+
+            <div>
+                <h3 id="powerValue">0 W</h3>
+                <p>Available Power</p>
+            </div>
+
+            <div>
+                <h3 id="budgetValue">$0</h3>
+                <p>Estimated Budget</p>
+            </div>
+        </div>
+    </div>
+
+    <button id="calculateButton">
+        CALCULATE SPACECRAFT
+    </button>
+
+    <div id="designResult" class="design-result"></div>
+
+    <!-- MISSION READINESS -->
+    <div class="readiness-panel">
+
+        <p class="tagline">PRE-LAUNCH VERIFICATION</p>
+        <h2>MISSION READINESS CHECK</h2>
+
+        <h3 id="readinessDestination">Destination</h3>
+
+        <p id="readinessStatus">
+            Configure your spacecraft.
+        </p>
+
+        <div class="readiness-details">
+            <p id="fuelCheck">Fuel: Pending</p>
+            <p id="powerCheck">Power: Pending</p>
+            <p id="batteryCheck">Battery: Pending</p>
+        </div>
+
+        <h3 id="readinessScore">Readiness: 0%</h3>
+
+        <button id="launchButton" disabled>
+            PROCEED TO MISSION LAUNCH
+        </button>
+
+        <p id="launchResult"></p>
+
+    </div>
+
+</section>
+
+<!-- MISSION SIMULATION -->
+<section id="simulation" class="simulation" hidden>
+
+    <p class="tagline">MISSION CONTROL CENTER</p>
+    <h1>MISSION LAUNCH CONTROL</h1>
+
+    <h2 id="simulationDestination">Destination</h2>
+
+    <div class="launch-panel">
+
+        <div id="rocketAnimation">🚀</div>
+
+        <h3 id="launchStatus">READY FOR LAUNCH</h3>
+
+        <div id="countdownDisplay">10</div>
+
+        <p>LAUNCH PROGRESS</p>
+
+        <div class="progress-container">
+            <div id="progressDisplay">0%</div>
+        </div>
+
+        <button id="startLaunchBtn">
+            START LAUNCH
+        </button>
+
+    </div>
+
+    <div class="launch-resources">
+        <p>Fuel Remaining: <span id="launchFuel">0</span> kg</p>
+        <p>Mission Progress: <span id="launchProgress">0%</span></p>
+    </div>
+
+</section>
+
+<!-- MISSION COMPLETION -->
+<section id="missionComplete" class="completion" hidden>
+
+    <div class="trophy">🏆</div>
+
+    <p class="tagline">MISSION CONTROL REPORT</p>
+
+    <h1>MISSION COMPLETED</h1>
+
+    <h2 id="completedDestination"></h2>
+
+    <p>Your spacecraft has successfully launched!</p>
+
+    <div class="launch-status">
+        <p>Mission Status: SUCCESS</p>
+        <p>Spacecraft: OPERATIONAL</p>
+        <p>Navigation: COMPLETE</p>
+    </div>
+
+    <button id="restartMission">NEW MISSION</button>
+
+</section>
+
+<footer>
+    <p>MISSION CONTROL © 2026 | SPACE ODYSSEY</p>
+    <p>Educational Spacecraft Simulation</p>
+</footer>
+
+</body>
+</html>
